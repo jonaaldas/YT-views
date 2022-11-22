@@ -11,6 +11,12 @@
 		>
 			Get YT Data
 		</button>
+		<!-- youtbe channel id -->
+		<p>UC1fLEeYICmo3O9cUsqIi7HA -> nick white</p>
+		<p>UCcJQ96WlEhJ0Ve0SLmU310Q -> Internet Coder</p>
+		<p>UCu1xbgCV5o48h_BYCQD7KJg -> Chris Sean</p>
+		<p>UCCQ6SXMc7MoJ88jjpn6j-8Q -> Marko</p>
+		<p>https://docs.sheetjs.com/docs/demos/vue/</p>
 		<button
 			v-show="showTable === true"
 			class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -28,10 +34,10 @@
 			<thead class="bg-gray-50">
 				<th class="px-6 py-2 text-xs text-gray-500">N</th>
 				<th class="px-6 py-2 text-xs text-gray-500">Channel Name</th>
+				<th class="px-6 py-2 text-xs text-gray-500">Thumbnail</th>
 				<th class="px-6 py-2 text-xs text-gray-500">Video Title</th>
 				<th class="px-6 py-2 text-xs text-gray-500">Link</th>
 				<th class="px-6 py-2 text-xs text-gray-500">Views</th>
-				<th class="px-6 py-2 text-xs text-gray-500">tags</th>
 			</thead>
 			<tbody class="bg-white">
 				<tr
@@ -44,6 +50,12 @@
 						{{ video.channelName }}
 					</td>
 					<td class="px-6 py-4 text-sm text-gray-500">
+						<img
+							:src="video.thumbNail.url"
+							alt=""
+						/>
+					</td>
+					<td class="px-6 py-4 text-sm text-gray-500">
 						{{ video.videoTitle }}
 					</td>
 					<td class="px-6 py-4 text-sm text-gray-500">
@@ -54,7 +66,7 @@
 						>
 					</td>
 					<td class="px-6 py-4 text-sm text-gray-500">{{ video.views }}</td>
-					<td class="flex items-center flex-wrap justify-center gap-2 p-px">
+					<!-- <td class="flex items-center flex-wrap justify-center gap-2 p-px">
 						<div
 							v-for="(tag, index) of video.tags"
 							:key="index"
@@ -62,7 +74,7 @@
 						>
 							{{ tag }}
 						</div>
-					</td>
+					</td> -->
 				</tr>
 			</tbody>
 		</table>
