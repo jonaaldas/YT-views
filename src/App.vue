@@ -1,6 +1,5 @@
 <template>
-	<div>
-		<h2>Hey</h2>
+	<div class="flex flex-col items-center">
 		<h1 class="text-2xl">Get YT videos by view count</h1>
 		<input
 			v-model="channelID"
@@ -12,20 +11,19 @@
 		>
 			Get YT Data
 		</button>
-		<input
-			class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-			type="button"
-			name="button"
-			id="excel_btn"
-			value="EXCEL"
-			@click="exportTableToExcel('xlsx')"
+		<button
 			v-show="showTable === true"
-		/>
+			class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+			@click="exportTableToExcel()"
+			id="sheetjsexport"
+		>
+			<b>Export as XLSX</b>
+		</button>
 
 		<table
 			v-show="showTable === true"
 			class="table-auto w-full"
-			id="infotable"
+			id="TableToExport"
 		>
 			<thead class="bg-gray-50">
 				<th class="px-6 py-2 text-xs text-gray-500">N</th>
@@ -118,7 +116,14 @@
 					this.videos = obj;
 				}
 			},
-			exportTableToExcel() {},
+			exportTableToExcel() {
+				/* Create worksheet from HTML DOM TABLE */
+				var wb = XLSX.utils.table_to_book(
+					document.getElementById('TableToExport')
+				);
+				/* Export to file (start a download) */
+				XLSX.writeFile(wb, 'SheetJSTable.xlsx');
+			},
 		},
 	};
 </script>
